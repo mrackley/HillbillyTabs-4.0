@@ -22,6 +22,7 @@
 //		$().HillbillyTabs({
 //			defaultTab: "<name of tab>", //if specified the tab title entered will always be the default tab displayed when the page loades
 //			rememberLastTab: true //if this value is true, the user is taken to the last tab they were view when the page reloads
+//                      showTitle: false //if this is true (default) the title of the web part is displayed in the tab. only applicable to single web part tabs	
 //		});
     /*************************************************************************************** */
 
