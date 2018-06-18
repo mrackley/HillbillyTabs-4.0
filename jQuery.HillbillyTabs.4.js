@@ -20,8 +20,9 @@
 $.fn.HillbillyTabs= function (options)
 {
     var opt = $.extend({}, {
-		tabConfiguration: undefined,
-        rememberLastTab: false
+	tabConfiguration: undefined,
+        rememberLastTab: false,
+        showTitle: true
     }, options);
 
     $("#contentBox").hide();
@@ -53,10 +54,15 @@ $.fn.HillbillyTabs= function (options)
 				found = true;
 				var title = $(this).attr("title");
 				
-				$("#"+ulID).append('<li><a href="#Tab'+index+CEWPID+'" id="TabHead'+index+CEWPID+'" onclick="HillbillyTabClick(this.id);">'+
+				$("#"+ulID).append('<li onclick="window.dispatchEvent(new Event(\'resize\'));"><a href="#Tab'+index+CEWPID+'" id="TabHead'+index+CEWPID+'" onclick="HillbillyTabClick(this.id);">'+
 					title+'</a></li>').after('<div id="Tab'+index+CEWPID+'"></div>');
 				
+                if (!opt.showTitle)
+                {
+                    $(this).hide();
+                }
 				var webPart = $(this).closest("[id^='MSOZoneCell_WebPart']");
+
 				
 				$("#Tab" + index+CEWPID).append((webPart));
 				index++;
@@ -71,9 +77,13 @@ $.fn.HillbillyTabs= function (options)
 					found = true;
 					var title = $(this).text();
 					
-					$("#"+ulID).append('<li><a href="#Tab'+index+CEWPID+'" id="TabHead'+index+CEWPID+'" onclick="HillbillyTabClick(this.id);">'+
+					$("#"+ulID).append('<li onclick="window.dispatchEvent(new Event(\'resize\'));"><a href="#Tab'+index+CEWPID+'" id="TabHead'+index+CEWPID+'" onclick="HillbillyTabClick(this.id);">'+
 						title+'</a></li>').after('<div id="Tab'+index+CEWPID+'"></div>');
 					
+                    if (!opt.showTitle)
+                    {
+                        $(this).hide();
+                    }
 					var webPart = $(this).closest("[id^='MSOZoneCell_WebPart']");
 					
 					$("#Tab" + index+CEWPID).append((webPart));
@@ -89,7 +99,7 @@ $.fn.HillbillyTabs= function (options)
 			var webParts = opt.tabConfiguration[index].webParts;
 			var horizontal = opt.tabConfiguration[index].horizontal;
             {
-                $("#"+ulID).append('<li><a href="#Tab'+index+CEWPID+'" id="TabHead'+index+CEWPID+'" onclick="HillbillyTabClick(this.id);">'+
+                $("#"+ulID).append('<li onclick="window.dispatchEvent(new Event(\'resize\'));"><a href="#Tab'+index+CEWPID+'" id="TabHead'+index+CEWPID+'" onclick="HillbillyTabClick(this.id);">'+
                     title+'</a></li>').after('<div id="Tab'+index+CEWPID+'"></div>');
             
 				if (horizontal != undefined && horizontal)
@@ -208,4 +218,5 @@ $.fn.HillbillyTabs= function (options)
 function HillbillyTabClick(id)
 {
 	$.cookie("ActiveTab",id,{ path: '/' });
-}
+}    
+
