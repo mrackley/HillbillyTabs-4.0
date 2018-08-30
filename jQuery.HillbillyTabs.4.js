@@ -151,7 +151,7 @@ $.fn.HillbillyTabs= function (options)
 	function ShowTab(tabTitle)
 	{
 		$("#"+ulID).find("li").each(function(){
-			console.log($(this).text());
+			//console.log($(this).text());
 			if($(this).text() == tabTitle){
 				$(this).find("a").click();
 				return;
